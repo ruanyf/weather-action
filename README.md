@@ -1,1 +1,1 @@
-A example of GitHub Actions of sending weather report with email.
+An example of GitHub Actions of sending weather report with email.
