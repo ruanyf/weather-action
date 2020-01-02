@@ -11,8 +11,10 @@ jobs:
     steps:
       - name: 'Checkout codes'
         uses: actions/checkout@v1
-      - name: 'Get Result'
+      - name: 'Get Weather'
         run: bash ./weather.sh
+      - name: 'Get Date'
+        run: echo "::set-env name=REPORT_DATE::$(date '+%Y-%m-%d')"
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
         with:
@@ -20,7 +22,7 @@ jobs:
           server_port: 465
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: Shanghai Weather Report
+          subject: Shanghai Weather Report $REPORT_DATE
           body: file://result.html
           to: yifeng.ruan@gmail.com
           from: GitHub Actions
