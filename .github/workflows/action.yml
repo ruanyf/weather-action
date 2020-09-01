@@ -3,27 +3,13 @@ name: 'GitHub Actions Weather Bot'
 on:
   push:
   schedule:
-    - cron: '0 21 * * *'
+    - cron: '58 1,3,5,9,11 * * *'
 
 jobs:
   bot:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout codes'
+      - name: 'cron codes'
         uses: actions/checkout@v1
-      - name: 'Get Weather'
+      - name: 'Get cron'
         run: bash ./weather.sh
-      - name: 'Get Date'
-        run: echo "::set-env name=REPORT_DATE::$(TZ=':Asia/Shanghai' date '+%Y-%m-%d %T')"
-      - name: 'Send mail'
-        uses: dawidd6/action-send-mail@master
-        with:
-          server_address: smtp.163.com
-          server_port: 465
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: Shanghai Weather Report (${{env.REPORT_DATE}})
-          body: file://result.html
-          to: yifeng.ruan@gmail.com
-          from: GitHub Actions
-          content_type: text/html
