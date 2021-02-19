@@ -25,6 +25,6 @@ jobs:
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: Wuhan Weather Report (${{env.REPORT_DATE}})
           body: file://result.html
-          to: sylar.q.yin@gmail.com
+          to: pcwithus@qq.com
           from: GitHub Actions
           content_type: text/html
